@@ -1,0 +1,52 @@
+@media only screen and (max-width: 576px) {
+    td { 
+
+        max-width: 100px;
+        word-wrap: break-word; 
+    }
+    .exercise-selection { 
+
+        max-width: 375px;
+        word-wrap: break-word; 
+    }
+    .saved-exercises { 
+
+        max-width: 390px;
+        word-wrap: break-word; 
+    }
+    .table th:not([align]){
+        text-align: center;   
+    }
+
+    .table td {
+        padding: 0.3em 0.05em;
+
+    }
+    table td:not([align]) {
+        text-align: center;   
+    }
+  }
+  
+  body {
+    background-color: white;
+}
+nav {
+    background-color: #5a4ae3;
+
+}
+   .btnColor {
+    max-width: 250px;
+    margin: 3px; 
+}   
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    max-width: 300px;
+}
+.PurpleBtn {
+color:white;
+background-color: #5a4ae3;
+
+}

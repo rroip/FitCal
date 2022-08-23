@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>FitCal - Fitness and Nutrition</title>
+</head>
+
+<body>
+    <header class="columns">
+    <img src="./images/FitCal_logo.png" alt="FitCal" class="center">
+    </header>
+    <section class="columns">
+        <h2 id="date" class="column is-full has-text-centered"></h2>
+    </section>
+    <!-- Navigation bar three functionalities -->
+    <nav class="columns is-flex is-justify-content-center">
+        <button id="bmiBtn" class="column is-one-fifth button is-outlined btnColor">BMI</button>
+        <button id="nutriBtn" class="column is-one-fifth button is-outlined btnColor">Nutrition</button>
+        <button id="exerBtn" class="column is-one-fifth button is-outlined btnColor">Exercise</button>
+    </nav>
+    <!-- BMI calculator input (hiden) -->
+    <section id="bmi" class="bmi-section">
+        <div class="columns is-flex is-justify-content-center mt-1">
+
+            <div class="pr-4">
+                <h3>BMI Calculator</h3>
+            </div>
+            <label for="weight"></label>
+            <input class="input is-info column is-one-fifth is-one-fifth-mobile" placeholder="Weight (lbs)" id="weight"
+                type="numbers"><br>
+            <label for="weight">&nbsp</label>
+            <input class="input is-info column is-one-fifth is-one-fifth-mobile" placeholder="Height (in)" id="height"
+                type="numbers"><br>
+
+            <button onclick="calculateBmi()" class="">Submit</button>
+            <!-- <button onclick="reload()" >Clear</button> -->
+        </div>
+
+        <div id="bmi-dislplay" class="columns is-flex is-justify-content-center mt-1">
+            <p id="heading"></p>
+            <p id="bmi-output"></p>
+            <p id="message"></p>
+        </div>
+    </section>
+
+    <!-- Exercise -->
+    <form id="exerciseSearch" class="exercise">
+        
+        <section class="columns">
+            <p class="column has-text-right has-text-centered-mobile"><u><b>Intensity</b></u></p>
+
+            <section class="column has-text-centered-mobile">
+                <input type="radio" id="beginner" name="intensity" value="beginner" required>
+                <label for="beginner">Beginner</label><br>
+        
+                <input type="radio" id="intermediate" name="intensity" value="intermediate">
+                <label for="intermediate">Intermediate</label><br>
+        
+                <input type="radio" id="advanced" name="intensity" value="advanced">
+                <label for="advanced">Advanced</label><br>  
+            </section>
+            
+        </section> 
+
+
+        <section class="columns">
+            <p class="column has-text-right has-text-centered-mobile"><u><b>Type</b></u></p>
+            
+            <section class="column has-text-centered-mobile">
+                <input type="radio" id="cardio" name="type" value="cardio" required>
+                <label for="cardio">Cardio</label><br>
+
+                <input type="radio" id="strength" name="type" value="strength">
+                <label for="strength">Strength</label><br>
+
+                <input type="radio" id="stretching" name="type" value="stretching">
+                <label for="stretching">Stretching</label><br>
+            </section>
+        
+        </section>
+        
+        <section class="columns">
+            <p class="column has-text-right has-text-centered-mobile"><u><b>Muscle Group</b></u></p>
+
+            <section class="column has-text-centered-mobile">
+                <input type="radio" id="abdominals" name="muscle" value="abdominals" required>
+                <label for="abdominals">Abdominals</label><br>
+
+                <input type="radio" id="abductors" name="muscle" value="abductors">
+                <label for="abductors">Abductors</label><br>
+
+                <input type="radio" id="biceps" name="muscle" value="biceps">
+                <label for="biceps">Biceps</label><br>
+
+                <input type="radio" id="calves" name="muscle" value="calves">
+                <label for="calves">Calves</label><br>
+
+                <input type="radio" id="chest" name="muscle" value="chest">
+                <label for="chest">Chest</label><br>
+
+                <input type="radio" id="forearms" name="muscle" value="forearms">
+                <label for="forearms">Forearms</label><br>
+
+                <input type="radio" id="glutes" name="muscle" value="glutes">
+                <label for="glutes">Glutes</label><br>
+
+                <input type="radio" id="hamstrings" name="muscle" value="hamstrings">
+                <label for="hamstrings">Hamstrings</label><br>
+
+                <input type="radio" id="lats" name="muscle" value="lats">
+                <label for="lats">Lats</label><br>
+
+                <input type="radio" id="lower_back" name="muscle" value="lower_back">
+                <label for="lower_back">Lower Back</label><br>
+
+                <input type="radio" id="middle_back" name="muscle" value="middle_back">
+                <label for="middle_back">Middle Back</label><br>
+
+                <input type="radio" id="neck" name="muscle" value="neck">
+                <label for="neck">Neck</label><br>
+
+                <input type="radio" id="quadriceps" name="muscle" value="quadriceps">
+                <label for="quadriceps">Quadriceps</label><br>
+
+                <input type="radio" id="traps" name="muscle" value="traps">
+                <label for="traps">Traps</label><br>
+
+                <input type="radio" id="triceps" name="muscle" value="triceps">
+                <label for="triceps">Triceps</label><br>
+
+                <button type="submit">Search</button>
+                <button type="button" class="exercises-saved">Saved Exercises</button>
+            </section>
+        </section>
+        
+    </form>
+
+    <section>
+        <div class="modal exercise-selection">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+                <header class="modal-card-head">
+                    <p class="modal-card-title">Exercise Selection</p>
+                    <button class="delete" aria-label="close"></button>
+                </header>
+                <section class="modal-card-body exercise-selection-body">
+                        <!-- Content ... -->
+                </section>
+                <footer class="modal-card-foot">
+                    <button id="savebutton" class="button PurpleBtn">Save</button>
+                    <button class="cancel-button">Cancel</button>
+                </footer>
+            </div>
+        </div>
+
+
+    </section>
+    <section>
+        <div class="modal saved-exercises">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+                <header class="modal-card-head">
+                    <p class="modal-card-title">Saved Exercises</p>
+                    <button class="delete" aria-label="close"></button>
+                </header>
+                <section class="modal-card-body saved-exercise-body">
+                    <!-- Content ... -->
+                </section>
+                <footer class="modal-card-foot">
+                    <button class="cancel-button">Cancel</button>
+                    <button class="remove-button">Remove All</button>
+                </footer>
+            </div>
+        </div>
+
+
+    </section>
+
+    <main>
+        <section class="nutrition">
+            <!-- input bar for nutrition -->
+            <section class="columns is-flex is-justify-content-center mt-1">
+                <input id="amountInput" type="number" class="input is-info column is-one-fifth has-text-right" min="0"
+                    placeholder="Amount">
+                <select id="unitInput" name="measurement" class="dropdown is-one-fifth">
+                    <option value="lb">lb</option>
+                    <option value="oz">oz</option>
+                    <option value="g">g</option>
+                    <option value="item" class="itemAmount">item</option>
+                </select>
+                <input id="itemInput" type="text" class="input is-info column is-one-fifth" placeholder="Food">
+                <button id="submitBtn" type="submit" class="column button is-one-fifth">Submit</button>
+            </section>
+            <!-- alert if API request fails -->
+            <div class="notification is-info is-light is-hidden has-text-centered">
+                <button class="delete"></button>
+                <span class="notifText">Please submit a valid entry.</span>
+
+            </div>
+            <!-- row with all nutritional sections -->
+            <div class="table-container">
+            <table class="table is-flex is-justify-content-center" id="foodValues">
+                <tr>
+                    <th>Food</th>
+                    <th>Calories</th>
+                    <th>Protein</th>
+                    <th>Carbs</th>
+                    <th>Fat</th>
+                    <th class="is-hidden-mobile">Sodium</th>
+                    <th class="is-hidden-mobile">Cholestrol</th>
+                    <th></th>
+                </tr>
+                <!-- total row -->
+                <tr>
+                    <td>Totals (unit)</td>
+                    <td id="caloriesTot">kcal</td>
+                    <td id="proteinTot">g</td>
+                    <td id="carbsTot">g</td>
+                    <td id="fatTot">g</td>
+                    <td id="sodiumTot" class="is-hidden-mobile">mg</td>
+                    <td id="cholesterolTot" class="is-hidden-mobile">mg</td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+        <section class="columns is-flex is-justify-content-center mt-1">
+            <!-- Clear Local Storage btn -->
+            <button class="columns button PurpleBtn" onclick="deleteItems()">Delete All</button>
+            
+        </section>
+
+        </section>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <!-- moment link -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./assets/js/script.js"></script>
+</body>
+
+</html>
